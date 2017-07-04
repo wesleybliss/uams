@@ -1,0 +1,27 @@
+{
+  "name": "uams",
+  "version": "1.0.0",
+  "description": "UAMS - user access management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/wesleybliss/uams.git"
+  },
+  "keywords": [
+    "user",
+    "acl",
+    "restify",
+    "express",
+    "middleware"
+  ],
+  "author": "Wesley Bliss <wesley.bliss@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/wesleybliss/uams/issues"
+  },
+  "homepage": "https://gitlab.com/wesleybliss/uams#README",
+  "dependencies": {}
+}

@@ -1,55 +1,42 @@
-
-const checkOptions = o => {
+(function() {
     
-    if (!o.uri || o.uri.length < 1)
-        throw new Error('URI required')
+    'use strict'
     
-    if (!o.uri.includes('://'))
-        throw new Error('Malformed URI ' + o.uri)
+    let log = console
     
-    const dataSource = o.uri.substring(0, o.uri.indexOf('://'))
-    
-    switch (dataSource) {
-        
-        case 'mongodb':
-            console.info('MongoDB data source detected')
-            break
-        
-        default:
-            throw new Error('Unsuported datasource ' + dataSource)
+    const seed = () => {
         
     }
     
-}
-
-const seed = () => {
+    const authenticate = (email, password) => {
+        
+    }
     
-}
-
-const authenticate = (email, password) => {
+    const middleware = (req, res, next) => {
+        
+        console.info(req.method, req.url)
+        
+        next()
+        
+    }
     
-}
-
-const middleware = (req, res, next) => {
     
-    console.info(req.method, req.url)
+    const defaultOptions = {
+        log: console,
+        mongoose: null
+    }
     
-    next()
+    module.exports = opts => {
+        
+        const o = Object.assign(defaultOptions, opts)
+        
+        if (!o.mongoose)
+            throw new Error('Mongoose instance required')
+        
+        log = o.log
+        
+        return middleware
+        
+    }
     
-}
-
-
-
-const defaultOptions = {
-    uri: null
-}
-
-module.exports = opts => {
-    
-    const o = Object.assign(defaultOptions, opts)
-    
-    checkOptions(o)
-    
-    return middleware
-    
-}
+}());
