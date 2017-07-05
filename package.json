@@ -2,7 +2,7 @@
   "name": "uams",
   "version": "1.0.0",
   "description": "UAMS - user access management system",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha"
   },
@@ -23,5 +23,7 @@
     "url": "https://gitlab.com/wesleybliss/uams/issues"
   },
   "homepage": "https://gitlab.com/wesleybliss/uams#README",
-  "dependencies": {}
+  "dependencies": {
+    "restify-errors": "^4.3.0"
+  }
 }
