@@ -1,4 +1,5 @@
 'use strict'
+const errors = require('restify-errors')
 
 // user = User controller instance
 module.exports = (log, app, controller) => {
@@ -9,12 +10,12 @@ module.exports = (log, app, controller) => {
             .then(user => {
                 
                 if (!user)
-                    return res.send(401, 'User not found')
+                    return res.send(new errors.ResourceNotFoundError('User not created'))
                 
                 res.send(200, user)
                 
             })
-            .catch(err => res.send(500, new Error(err)))
+            .catch(err => res.send(new errors.InternalError(err)))
     })
     
 }

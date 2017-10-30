@@ -2,7 +2,7 @@
 
 module.exports = User => {
     
-    const createUser = model => (new User(doc)).save()
+    const createUser = model => (new User(model)).save()
     
     
     return {

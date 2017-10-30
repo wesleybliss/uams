@@ -7,10 +7,13 @@ module.exports = mongoose => {
         // Easily disable a user without removing their account
         active:                       { type: Boolean, required: true, default: true },
         
-        lastActiveAt: Date,
+        lastActiveAt:                 Date,
         
         // Admin level of access, <= 0 === normal user)
         accessLevel:                  { type: Number, required: true, default: 0 },
+        
+        email:                        { type: String, required: true },
+        password:                     { type: String, required: true },
         
         token: {
             value:                    String,

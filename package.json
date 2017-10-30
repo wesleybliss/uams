@@ -24,6 +24,7 @@
   },
   "homepage": "https://gitlab.com/wesleybliss/uams#README",
   "dependencies": {
+    "jsonwebtoken": "^7.4.1",
     "restify-errors": "^4.3.0"
   }
 }

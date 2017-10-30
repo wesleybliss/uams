@@ -4,10 +4,9 @@ const errors = require('restify-errors')
 // user = User controller instance
 module.exports = (log, app, controller) => {
     
-    app.get('/users/:id', (req, res) => {
+    app.post('/users/login', (req, res) => {
         
-        // @todo async/await if reduces code size
-        controller.findUser('_id', req.params.id)
+        controller.login(req.body.email, req.body.password)
             .then(user => {
                 
                 if (!user)
@@ -18,9 +17,7 @@ module.exports = (log, app, controller) => {
             })
             .catch(err => {
                 
-                if (err.name && err.name === 'CastError')
-                    return res.send(new errors.InvalidArgumentError(err, 'Invalid user ID'))
-                
+                log.error(err)
                 res.send(new errors.InternalError(err))
                 
             })

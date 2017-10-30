@@ -42,17 +42,30 @@
         log = o.log
         
         // Models
-        const User = require('./models/user')(o.mongoose)
+        const models = {
+            User: require('./models/user')(o.mongoose)
+        }
         
         // Controllers
-        const Read = require('./controllers/read')(User)
-        const Write = require('./controllers/write')(User)
+        const controllers = {
+            Read: require('./controllers/read')(models.User),
+            Write: require('./controllers/write')(models.User),
+            State: require('./controllers/state')(models.User)
+        }
         
         // Routes
-        require('./routes/read')(log, o.app, Read)
-        require('./routes/write')(log, o.app, Write)
+        const routes = {
+            Read: require('./routes/read')(log, o.app, controllers.Read),
+            Write: require('./routes/write')(log, o.app, controllers.Write),
+            State: require('./routes/state')(log, o.app, controllers.State)
+        }
         
-        return middleware
+        return {
+            models,
+            controllers,
+            routes,
+            middleware
+        }
         
     }
     
