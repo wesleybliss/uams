@@ -19,5 +19,6 @@ module.exports = options => {
     app.post('/users', controller.signup)
     app.post('/users/login', controller.login)
     app.put('/users', authRoute, controller.update)
+    app.get('/users', authRoute, controller.fetch)
     
 }

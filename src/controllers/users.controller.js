@@ -108,7 +108,31 @@ module.exports = options => {
                 res.send(200, { data: { user: sanitizeModel(user) }})
             })
             
-        } // update
+        }, // update
+        
+        fetch: (req, res, next) => {
+            
+            log.info('Looking up user w/token',
+                req.token.substring(0, 4) + '...' +
+                req.token.substring(req.token.length - 4))
+            
+            User
+                .findOne({ token: req.token })
+                .exec()
+                .then(user => {
+                    if (!user) {
+                        log.warn('get /users - no user found')
+                        return res.send(404, { message: 'user not found' })
+                    }
+                    user = sanitizeModel(user)
+                    log.info('Found user', user.username || user.email)
+                    res.send(200, { data: { user }})
+                })
+                .catch(err => {
+                    res.send(500, { message: 'Error ' + err })
+                })
+            
+        }
         
     }
     
