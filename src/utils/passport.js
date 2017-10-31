@@ -46,8 +46,6 @@ module.exports = (options, passport) => {
         
         process.nextTick(() => {
             
-            console.info('passport local', username, { [userField]: username })
-            
             User.findOne({ [userField]: username }, (err, user) => {
                 
                 if (err) {
@@ -65,7 +63,7 @@ module.exports = (options, passport) => {
                 newUser.email = req.body.email || ''
                 newUser.username = req.body.username
                 newUser.password = newUser.generateHash(password)
-                newUser.token = createToken(newUser.username, newUser.active, newUser.accessLevel)
+                newUser.token = createToken(newUser.id, newUser.active, newUser.accessLevel)
                 
                 newUser.save(err => {
                     if (err) {

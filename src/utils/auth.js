@@ -8,10 +8,10 @@ module.exports = options => {
     
     return {
         
-        createToken: (username, active, accessLevel) => {
+        createToken: (userId, active, accessLevel) => {
             
             const payload = {
-                username,
+                userId,
                 active,
                 accessLevel
             }
