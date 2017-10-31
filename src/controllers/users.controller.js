@@ -132,7 +132,7 @@ module.exports = options => {
                     res.send(500, { message: 'Error ' + err })
                 })
             
-        }
+        } // fetch
         
     }
     
