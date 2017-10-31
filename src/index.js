@@ -12,7 +12,13 @@
         passField: 'password',
         excludeDbFields: [],
         jwtTokenSecret: '',
-        jwtExpiresIn: '24hr'
+        jwtExpiresIn: '24hr',
+        routes: {
+            signup: '/users',
+            login: '/users/login',
+            update: '/users',
+            fetch: '/users'
+        }
     }
     
     const middleware = (req, res, next) => {

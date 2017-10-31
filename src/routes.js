@@ -16,9 +16,9 @@ module.exports = options => {
     const { authRoute } = require('./controllers/auth.controller')(options)
     const controller = require('./controllers/users.controller')(options)
     
-    app.post('/users', controller.signup)
-    app.post('/users/login', controller.login)
-    app.put('/users', authRoute, controller.update)
-    app.get('/users', authRoute, controller.fetch)
+    app.post(options.routes.signup, controller.signup)
+    app.post(options.routes.login, controller.login)
+    app.put(options.routes.update, authRoute, controller.update)
+    app.get(options.routes.fetch, authRoute, controller.fetch)
     
 }
