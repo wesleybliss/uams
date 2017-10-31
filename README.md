@@ -3,6 +3,8 @@
 
 User account management middleware for Restify.
 
+See [Restify Starter](https://github.com/wesleybliss/restify-starter) for example usage.
+
 
 ## Features
 
