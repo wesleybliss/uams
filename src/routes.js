@@ -13,9 +13,11 @@ module.exports = options => {
     require('./utils/passport')(options, passport)
     app.passport = passport
     
+    const { authRoute } = require('./controllers/auth.controller')(options)
     const controller = require('./controllers/users.controller')(options)
     
     app.post('/users', controller.signup)
     app.post('/users/login', controller.login)
+    app.put('/users', authRoute, controller.update)
     
 }

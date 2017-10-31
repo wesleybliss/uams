@@ -12,6 +12,8 @@ module.exports = options => {
         
         signup: (req, res, next) => {
             
+            // @todo Add reCAPTCHA validation
+            
             passport.authenticate('local', (err, user, info) => {
                 
                 if (err) return res.send(500, err)
@@ -28,7 +30,7 @@ module.exports = options => {
                 
             })(req, res, next)
             
-        },
+        }, // signup
         
         login: (req, res, next) => {
             
@@ -75,7 +77,38 @@ module.exports = options => {
                 
             })
             
-        }
+        }, // login
+        
+        update: (req, res, next) => {
+            
+            log.info('Looking up user w/token', req.token)
+            
+            if (!req.body || Object.keys(req.body).length < 1)
+                return res.send(412, { message: 'No update params received' })
+            
+            if (req.body && req.body.password && req.body.password.length < 8)
+                return res.send(417, { message: 'Password must be 8 characters or more' })
+            
+            const restrictedFields = ['_id', 'id', '__v', 'token']
+            
+            restrictedFields.forEach(field => {
+                if (req.body.hasOwnProperty(field)) {
+                    log.warn(`Omitting "${field}" field from updates`)
+                    delete req.body[field]
+                }
+            })
+            
+            if (req.body.password)
+                req.body.password = user.generateHash(req.body.password)
+            
+            log.info('Updating user with params', req.body)
+            
+            User.findOneAndUpdate({ token: req.token }, req.body, { new: true }, (err, user) => {
+                if (err) return res.send(500, { message: 'Failed to update account'})
+                res.send(200, { data: { user: sanitizeModel(user) }})
+            })
+            
+        } // update
         
     }
     
