@@ -8,6 +8,14 @@ module.exports = options => {
     
     return {
         
+        /**
+         * Create a new JWT token
+         * 
+         * @param  {String}  userId      User ID
+         * @param  {Boolean} active      If the user is "active"
+         * @param  {Number}  accessLevel User's access level
+         * @return {Object}              JWT
+         */
         createToken: (userId, active, accessLevel) => {
             
             const payload = {
@@ -22,7 +30,14 @@ module.exports = options => {
             
         },
         
-        // @todo this does not recursively go into child objects
+        /**
+         * Sanitize a model by removing sensitive fields.
+         * 
+         * @todo   This does not recursively go into child objects
+         * @param  {Object} model        Mongoose model instance (or POJO)
+         * @param  {Array}  [keepFields] Fields to keep
+         * @return {Object}              Mongoose motel instance (or POJO)
+         */
         sanitizeModel: (model, keepFields = []) => {
             
             if (!(keepFields instanceof Array))
