@@ -30,6 +30,10 @@
         
         log.info('UAMS init')
         
+        options.session = {
+            User: require('./models/user')(options.mongoose)
+        }
+        
         const routes = require('./routes')(options)
         
         options.app.uams = {

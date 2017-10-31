@@ -6,8 +6,7 @@ const LocalStrategy = require('passport-local').Strategy
 module.exports = (options, passport) => {
     
     const { mongoose, userField, passField } = options
-    
-    const User = require('../models/user')(mongoose)
+    const { User } = options.session
     const { createToken } = require('./auth')(options)
     
     // =========================================================================

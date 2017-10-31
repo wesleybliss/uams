@@ -16,5 +16,6 @@ module.exports = options => {
     const controller = require('./controllers/users.controller')(options)
     
     app.post('/users', controller.signup)
+    app.post('/users/login', controller.login)
     
 }
