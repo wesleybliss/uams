@@ -13,6 +13,7 @@
         excludeDbFields: [],
         jwtTokenSecret: '',
         jwtExpiresIn: '24hr',
+        userSchema: {},
         routes: {
             signup: '/users',
             login: '/users/login',
@@ -36,8 +37,12 @@
         
         log.info('UAMS init')
         
+        const userModelDefinition = Object.assign(
+            require('./models/_user'),
+            options.userModel)
+        
         options.session = {
-            User: require('./models/user')(options.mongoose)
+            User: require('./models/user')(options.mongoose, userModelDefinition)
         }
         
         const routes = require('./routes')(options)

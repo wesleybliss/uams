@@ -1,45 +1,9 @@
 'use strict'
 const bcrypt = require('bcrypt-nodejs')
 
-module.exports = mongoose => {
+module.exports = (mongoose, modelDefinition) => {
     
-    const schema = new mongoose.Schema({
-        
-        // Easily disable a user without removing their account
-        active: {
-            type: Boolean,
-            required: true,
-            default: true
-        },
-        
-        lastActiveAt: Date,
-        
-        // Admin level of access, <= 0 === normal user)
-        accessLevel: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        
-        // JWT
-        token: String,
-        
-        email: String,
-        username: String,
-        password: {
-            type: String,
-            required: true
-        },
-        
-        ios: {
-            apnsDeviceTokens:         [String]
-        },
-        
-        android: {
-            firebasePushTokens:       [String]
-        }
-        
-    }, { timestamps: true } )
+    const schema = new mongoose.Schema(modelDefinition, { timestamps: true } )
     
     // Example custom method
     schema.methods.isPrivileged = () => {

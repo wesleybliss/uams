@@ -8,11 +8,11 @@ User account management middleware for Restify.
 
 - Plugs into existing Restify servers
 - Configurable options for route endpoints, JWT tokens, etc.
+- Extensible Mongoose models
 
 
 ## Roadmap
 
-- Extensible Mongoose models
 - Forgotten password recovery
 
 
@@ -93,6 +93,26 @@ const port = process.env.PORT || 8080
 app.listen( port, host, console.info(
     `App listening at http://${host}:${port}` ) )
 ```
+
+
+## Options
+
+| Option          | Default Value    | Required | Description |
+| --------------- | ---------------- | -------- | ----------- |
+| app             | `null`           | Yes      | Restify server instance
+| mongoose        | `null`           | Yes      | Mongoose instance
+| log             | `console`        | No       | Any compatible logger (see readme)
+| userField       | `username`       | No       | User field (typically "email" or "username")
+| passField       | `password`       | No       | Password field
+| jwtTokenSecret  | `null`           | No       | JWT token secret
+| jwtExpiresIn    | `null`           | No       | JWT token expiration
+| excludeDbFields | `['']`           | No       | Fields to be excluded from responses
+| routes          | `-`              | No       | -
+| routes.signup   | `/users`         | No       | `POST` signup route
+| routes.login    | `/users/login`   | No       | `POST` login route
+| routes.update   | `/users`         | No       | `PUT` update route
+| routes.fetch    | `/users`         | No       | `GET` fetch route
+| userSchema      | `{}`             | No       | Additional fields to add to the user model *(see [Mongoose Schema](http://mongoosejs.com/docs/guide.html))*
 
 
 ---
