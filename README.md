@@ -16,6 +16,7 @@ See [Restify Starter](https://github.com/wesleybliss/restify-starter) for exampl
 ## Roadmap
 
 - Forgotten password recovery
+- Publish NPM module
 
 
 ## Motivation
