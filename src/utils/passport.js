@@ -17,7 +17,6 @@ module.exports = (options, passport) => {
     
     // used to serialize the user for the session
     passport.serializeUser((user, done) => {
-        log.log('------serializeUser')
         done(null, user.id)
     })
     
