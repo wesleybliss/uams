@@ -4,11 +4,11 @@
   "description": "UAMS - user access management system",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha -b ./test/unit/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/wesleybliss/uams.git"
+    "url": "git+ssh://git@github.com:wesleybliss/uams.git"
   },
   "keywords": [
     "user",
@@ -18,14 +18,16 @@
     "middleware"
   ],
   "author": "Wesley Bliss <wesley.bliss@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/wesleybliss/uams/issues"
+    "url": "https://github.com/wesleybliss/uams/issues"
   },
-  "homepage": "https://gitlab.com/wesleybliss/uams#README",
+  "homepage": "https://github.com/wesleybliss/uams#README",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "chai": "^4.1.2",
     "jsonwebtoken": "^8.1.0",
+    "mocha": "^4.0.1",
     "parse-bearer-token": "0.0.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

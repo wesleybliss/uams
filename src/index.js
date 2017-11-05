@@ -23,7 +23,7 @@
     }
     
     const middleware = (req, res, next) => {
-        log.info('UAMS', req.method, req.url)
+        // log.info('UAMS', req.method, req.url)
         next()
     }
     
@@ -35,7 +35,7 @@
         if (!options.mongoose) throw new Error('Mongoose instance required')
         log = options.log
         
-        log.info('UAMS init')
+        // log.info('UAMS init')
         
         const userModelDefinition = Object.assign(
             require('./models/_user'),
