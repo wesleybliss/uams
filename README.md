@@ -1,4 +1,7 @@
 # UAMS
+
+[![Build Status](https://travis-ci.org/wesleybliss/uams.svg?branch=master)](https://travis-ci.org/wesleybliss/uams)
+
 > User Access Management System
 
 User account management middleware for Restify.
