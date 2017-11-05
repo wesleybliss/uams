@@ -1,6 +1,7 @@
 'use strict'
 const jwt = require('jsonwebtoken')
 const parseBearerToken = require('parse-bearer-token')
+
 module.exports = options => {
     
     const { log, app, jwtTokenSecret } = options
@@ -10,7 +11,7 @@ module.exports = options => {
         authRoute: (req, res, next) => {
             
             // check header or url parameters or post parameters for token
-            var token = parseBearerToken(req)
+            const token = parseBearerToken(req)
             
             // decode token
             if (token) {
