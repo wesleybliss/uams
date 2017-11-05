@@ -70,4 +70,19 @@ describe('Utils', () => {
         }
     })
     
+    it('should sanitize a model, but ignore invalid non-array \'keepFields\'', done => {
+        try {
+            const cleanModel = sanitizeModel(dirtyModel, 'password')
+            expect(cleanModel).to.have.property('foo')
+            expect(cleanModel.foo).to.equal('bar')
+            expect(cleanModel).to.not.have.property('__v')
+            expect(cleanModel).to.not.have.property('password')
+            expect(cleanModel).to.not.have.property('lastActiveAt')
+            done()
+        }
+        catch (e) {
+            done(e)
+        }
+    })
+    
 })
