@@ -4,7 +4,8 @@
   "description": "UAMS - user access management system",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -b ./test/unit/*.js"
+    "test": "nyc --reporter=html --reporter=text mocha -b ./test/unit/*.js",
+    "cover": "istanbul cover ./test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -25,12 +26,16 @@
   "homepage": "https://github.com/wesleybliss/uams#README",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "chai": "^4.1.2",
     "jsonwebtoken": "^8.1.0",
-    "mocha": "^4.0.1",
     "parse-bearer-token": "0.0.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "restify-errors": "^5.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0"
   }
 }

@@ -38,7 +38,7 @@ module.exports = options => {
                 
                 // if there is no token
                 // return an error
-                console.error('No token provided')
+                log.error('No token provided')
                 res.send(403, {
                     message: 'No token provided.'
                 })

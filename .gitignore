@@ -24,3 +24,6 @@ core.*
 
 # MongoDB shared from Docker
 data/**/*
+
+# Tests
+/.nyc_output

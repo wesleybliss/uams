@@ -43,7 +43,7 @@ module.exports = options => {
             
             User.findOne({ [userField]: username }, (err, user) => {
                 
-                if (err) res.send(500, { message: err })
+                if (err) return res.send(500, { message: err })
                 
                 if (!user || !user.validPassword(req.body.password))
                     return res.send(401, { message: invalidMessage })
