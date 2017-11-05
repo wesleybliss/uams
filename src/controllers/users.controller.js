@@ -99,7 +99,7 @@ module.exports = options => {
             })
             
             if (req.body.password)
-                req.body.password = user.generateHash(req.body.password)
+                req.body.password = User.generateHash(req.body.password)
             
             log.info('Updating user with params', req.body)
             

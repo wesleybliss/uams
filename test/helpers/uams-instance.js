@@ -1,4 +1,19 @@
 
+const findFunction = function() {
+    for (let x in arguments)
+        if (typeof arguments[x] === 'function') {
+            arguments[x]('test', {})
+            break
+        }
+    return {
+        exec: function() {
+            return new Promise((resolve, reject) => {
+                reject('test error')
+            })
+        }
+    }
+}
+
 const uams = require('../../src')({
     log: {
         log: function() {},
@@ -18,26 +33,17 @@ const uams = require('../../src')({
         Schema: function Schema() {
             return {
                 pre: function pre() {},
+                statics: {},
                 methods: {}
             }
         },
         model: function model(def) {
             return Object.assign(def, {
-                find: function() {
-                    for (let x in arguments)
-                        if (typeof arguments[x] === 'function')
-                            return arguments[x]('test')
-                },
-                findOne: function() {
-                    for (let x in arguments)
-                        if (typeof arguments[x] === 'function')
-                            return arguments[x]('test')
-                },
-                save: function() {
-                    for (let x in arguments)
-                        if (typeof arguments[x] === 'function')
-                            return arguments[x]('test')
-                }
+                find: findFunction,
+                findOne: findFunction,
+                save: findFunction,
+                findOneAndUpdate: findFunction,
+                generateHash: function() { return 'fake hash' }
             })
         }
     },

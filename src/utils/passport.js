@@ -5,7 +5,7 @@ const LocalStrategy = require('passport-local').Strategy
 
 module.exports = (options, passport) => {
     
-    const { mongoose, userField, passField } = options
+    const { log, mongoose, userField, passField } = options
     const { User } = options.session
     const { createToken } = require('./auth')(options)
     
@@ -17,7 +17,7 @@ module.exports = (options, passport) => {
     
     // used to serialize the user for the session
     passport.serializeUser((user, done) => {
-        console.log('------serializeUser')
+        log.log('------serializeUser')
         done(null, user.id)
     })
     
@@ -34,7 +34,7 @@ module.exports = (options, passport) => {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
     
-    console.info('Init passport')
+    log.info('Init passport')
     
     passport.use('local', new LocalStrategy({
         usernameField: userField,
@@ -49,7 +49,7 @@ module.exports = (options, passport) => {
             User.findOne({ [userField]: username }, (err, user) => {
                 
                 if (err) {
-                    console.error(err)
+                    log.error(err)
                     return done(err)
                 }
                 
@@ -67,7 +67,7 @@ module.exports = (options, passport) => {
                 
                 newUser.save(err => {
                     if (err) {
-                        console.error(err)
+                        log.error(err)
                         throw err
                     }
                     return done(null, newUser)
